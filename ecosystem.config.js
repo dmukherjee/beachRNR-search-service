@@ -1,7 +1,7 @@
 module.exports = {
   apps: [{
     name: 'search-service',
-    cwd: 'src/server',
+    cwd: 'beachrnr-search-service/src/server',
     script: './index.js'
   }],
   deploy: {

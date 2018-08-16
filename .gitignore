@@ -2,5 +2,6 @@ build/
 dist/
 
 node_modules/
+coverage
 .env
 *.log

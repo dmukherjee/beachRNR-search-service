@@ -11,7 +11,7 @@
     "lint": "eslint *.js data src",
     "test": "jest",
     "test:watch": "jest --watch",
-    "test:codecov": "jest && codecov",
+    "test:codecov": "jest --detectOpenHandles && codecov",
     "validate": "run-p lint test"
   },
   "jest": {

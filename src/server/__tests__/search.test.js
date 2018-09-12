@@ -4,22 +4,22 @@ import { EventEmitter } from 'events';
 
 const searchQuery = require('../../utils/elasticSearch/searchQuery');
 jest.mock('../../utils/elasticSearch/searchQuery');
-const redisSearch = require('../../utils/redis/redis');
-jest.mock('../../utils/redis/redis');
+// const redisSearch = require('../../utils/redis/redis');
+// jest.mock('../../utils/redis/redis');
 
-import redis from 'redis';
-import redis_mock from 'redis-mock';
-jest.spyOn(redis, 'createClient').mockImplementation(redis_mock.createClient);
-jest.spyOn(redisSearch, 'getSearchResults').mockImplementation(()=> {
-  return undefined;
-});
-jest.spyOn(redisSearch, 'writeSearchToCache').mockImplementation(()=> {
-  return true;
-});
+// import redis from 'redis';
+// import redis_mock from 'redis-mock';
+// jest.spyOn(redis, 'createClient').mockImplementation(redis_mock.createClient);
+// jest.spyOn(redisSearch, 'getSearchResults').mockImplementation(()=> {
+//   return undefined;
+// });
+// jest.spyOn(redisSearch, 'writeSearchToCache').mockImplementation(()=> {
+//   return true;
+// });
 
-jest.spyOn(redisSearch, 'closeInstance').mockImplementation(()=> {
-  redis_mock.quit;
-});
+// jest.spyOn(redisSearch, 'closeInstance').mockImplementation(()=> {
+//   redis_mock.quit;
+// });
 
 const request = location => httpMocks.createRequest({
   params: {location: location }
@@ -36,9 +36,9 @@ searchQuery.queryTerm.mockImplementation((term) => {
 
 
 describe('get formatted data', () => {
-  afterAll(async () => {
-    await redisSearch.closeInstance();
-  });
+  // afterAll(async () => {
+  //   await redisSearch.closeInstance();
+  // });
   it('should return formatted data', () => {
     const jsonData = require('../__mockData__/boston.json');
     const output = formatData(jsonData);
@@ -54,9 +54,9 @@ describe('get formatted data', () => {
 });
 
 describe('get search result', () => {
-  afterAll(async () => {
-    await redisSearch.closeInstance();
-  });
+  // afterAll(async () => {
+  //   await redisSearch.closeInstance();
+  // });
   it('should return search result for a valid location', async () => {
     await search(request('boston'), response());
 

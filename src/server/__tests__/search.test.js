@@ -36,7 +36,9 @@ searchQuery.queryTerm.mockImplementation((term) => {
 
 
 describe('get formatted data', () => {
-  afterAll(() => redisSearch.closeInstance());
+  afterAll(async () => {
+    await redisSearch.closeInstance();
+  });
   it('should return formatted data', () => {
     const jsonData = require('../__mockData__/boston.json');
     const output = formatData(jsonData);
@@ -52,7 +54,9 @@ describe('get formatted data', () => {
 });
 
 describe('get search result', () => {
-  afterAll(() => redis.closeInstance());
+  afterAll(async () => {
+    await redisSearch.closeInstance();
+  });
   it('should return search result for a valid location', async () => {
     await search(request('boston'), response());
 
@@ -74,7 +78,7 @@ describe('get search result', () => {
 
   it('should return empty dataset for invalid location', async () => {
     await search(request('invalid_location'), response());
-    
+
     response().on('end', () => {
       let result = response()._getData();
       expect(response().statusCode).toBe(200);

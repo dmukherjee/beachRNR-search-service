@@ -15,13 +15,11 @@ const writeSearchToCache = async (query, result) => {
   if (filteredResult.length) {
     await client.setAsync(query, JSON.stringify({ total: result.count, data: filteredResult}));
   }
-  // client.quit();
 };
 
 const getSearchResults = async (query) => {
   client = client ? client : redis.createClient();
   let value = await client.getAsync(query);
-  // client.quit();
   return JSON.parse(value);
 };
 

@@ -9,19 +9,19 @@ bluebird.promisifyAll(redis.Multi.prototype);
 let client;
 
 const writeSearchToCache = async (query, result) => {
-  client = redis.createClient();
+  client = client ? client : redis.createClient();
 
   let filteredResult = result.data.filter(e => e.city.toLowerCase() === query.toLowerCase());
   if (filteredResult.length) {
     await client.setAsync(query, JSON.stringify({ total: result.count, data: filteredResult}));
   }
-  client.quit();
+  // client.quit();
 };
 
 const getSearchResults = async (query) => {
-  client = redis.createClient();
+  client = client ? client : redis.createClient();
   let value = await client.getAsync(query);
-  client.quit();
+  // client.quit();
   return JSON.parse(value);
 };
 

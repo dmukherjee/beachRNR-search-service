@@ -26,3 +26,5 @@ View the CI/CD pipeline [here](https://drive.google.com/open?id=1wSJlPzdInVyd2Aq
 - Redis 3.2.x
 - Elasticsearch 6.2.3
 - Java 1.8.0_161
+
+
